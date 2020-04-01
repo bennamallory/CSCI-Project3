@@ -19,10 +19,10 @@ class Object{
         int getObjectValue(); //get value score of object
 
         //Setters (void);
-        void setObjectName(); //set the name of the object
-        void setObjectValue(); //set the value of the object
+        void setObjectName(string objectName_); //set the name of the object
+        void setObjectValue(string objectValue_); //set the value of the object
 
-     private: 
+    private: 
         string objectName; //name of the object
         int objectValue; //the value score the object posesses 
 
