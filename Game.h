@@ -1,5 +1,5 @@
 // CS1300 Spring 2020
-// Author: Mallory Benna
+// Author: Mallory Benna and Srvya Dhanwanda
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Game Header File
 
