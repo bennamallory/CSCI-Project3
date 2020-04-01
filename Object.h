@@ -1,5 +1,5 @@
 // CS1300 Spring 2020
-// Author: Mallory Benna
+// Author: Mallory Benna and Sravya Dhanwanda
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Class
 
