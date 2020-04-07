@@ -26,6 +26,8 @@ class Game{
         void setPlanet(string planetOn_); //set the current planet player is on
         void printObject(Object object_); //print designated object and its score
         void printStats(Player player); //print intelligence, strength, money, and characterScore
+        void setCharacter(Player players[]); //
+        void addCharacter(Player players[]); //
         
 
     private: 
