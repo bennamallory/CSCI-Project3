@@ -62,3 +62,11 @@ void Game::printStats(Player player_){
     //find player in players array
     //print intelligence, strength, money, and characterScore
 }
+
+void Game::setCharacter(Player players[]){
+    //set character you want to use to perform tasks from character array
+}
+
+void Game::addCharacter(Player players[]){
+    //adds character to character array at various planets
+}
