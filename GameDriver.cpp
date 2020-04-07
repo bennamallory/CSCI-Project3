@@ -23,6 +23,8 @@ int main(){
     
     //IF players lose #2,3,4 -- do they lose points/money?
     
+    //WHEN TO ADD THE FIRST PLAYER
+    
     
     while(user_input != 6){
         cout << "Select a numerical option:" << endl;
@@ -55,6 +57,7 @@ int main(){
                     cout << "1. Trivia" << endl;
                     cout << "2. Math" << endl;
                     cout << "3. Riddle" << endl;
+                    //CHOOSE CHARACTER
                     
                     cin >> secondary_input;
                     
@@ -78,6 +81,7 @@ int main(){
                     cout << "======Secondary Menu=====" << endl;
                     cout << "1. Brawl" << endl;
                     cout << "2. Help villagers" << endl;
+                    //CHOOSE CHARACTER
                     
                     cin >> secondary_input2;
                     
