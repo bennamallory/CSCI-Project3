@@ -1,5 +1,5 @@
-// CS1300 Spring 2020
-// Author: Mallory Benna and Srvya Dhanwanda
+// CSC1300 Spring 2020
+// Author: Mallory Benna and Sravya Dhanwanda
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Player Header File
 
