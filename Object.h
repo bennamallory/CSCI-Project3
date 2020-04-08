@@ -1,5 +1,5 @@
 // CS1300 Spring 2020
-// Author: Mallory Benna and Sravya Dhanwanda
+// Author: Mallory Benna and Srvya Dhanwanda
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Class
 
@@ -12,7 +12,7 @@ using namespace std;
 class Object{
     public:
         Object(); //Default constructor
-        Object(string objectName,objectValue); //Parameterized constructor
+        Object(string objectName,int objectValue); //Parameterized constructor
         
         //Getters
         string getObjectName(); //get name of object
@@ -20,7 +20,7 @@ class Object{
 
         //Setters (void);
         void setObjectName(string objectName_); //set the name of the object
-        void setObjectValue(string objectValue_); //set the value of the object
+        void setObjectValue(int objectValue_); //set the value of the object
 
     private: 
         string objectName; //name of the object
