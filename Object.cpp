@@ -14,11 +14,10 @@ Object::Object(){
 }
 
 //Parameterized constructor
-Object::Object(string objectName_, string objectValue_){
+Object::Object(string objectName_, int objectValue_){
     objectName = objectName_;
     objectValue = objectValue_;
 }
-
 
 //Getters
 string Object::getObjectName(){
@@ -30,10 +29,10 @@ int Object::getObjectValue(){
 }
 
 //Setters
-void Object::setObjectName(objectName_){
+void Object::setObjectName(string objectName_){
     objectName = objectName_;
 }
 
-void Object::setObjectValue(objectValue_){
+void Object::setObjectValue(int objectValue_){
     objectValue = objectValue_;
 }
