@@ -34,17 +34,30 @@ int Game::readObjects(string filename){
 
 int Game::writeObjects(string filename){
     //look in objects array
-    //find the object that has the _____ value score
-    //open "filename" to write to
-    //write the object to the end of the file
+    //find the object that has the highest value score -- that is the object you are adding to the file
+    if(numObjects == 0){
+        cout << "There are no objects in the objects array." << endl;
+        totalValues = 0;
+    } else {
+        //int highest = getObjectValue();
+        for(int i=0; i < numObjects; i++){
+            
+        }
+        
+        
+        //open "filename" to write to
+        //write the object to the end of the file
+        
+        //read the same file
+        //calculate the total value of all objects in the list
+        //return the total value of all objects in the list
+        
+    }
     
-    //read the same file
-    //calculate the total value of all objects in the list
-    //return the total value of all objects in the list
     
-    //return totalValues
     
-    return 0;
+    
+    return totalValues;
 }
 
 string Game::getPlanet(){
@@ -66,10 +79,49 @@ void Game::printStats(Player player_){
     //print intelligence, strength, money, and characterScore
 }
 
-void Game::setCharacter(Player players[]){
+void Game::setCharacter(string playerName){
     //set character you want to use to perform tasks from character array
+    if(findUser(playerName, numPlayers, players)){
+        currentCharacter = playerName;
+    } else {
+        cout << "That player is not part of the clan " << endl;
+    }
 }
 
-void Game::addCharacter(Player players[]){
+
+/*
+* This function checks to see if a user exists in the array
+* Parameters: string user, int numPlayers_, Player playersArr[]
+* Return: true or false
+*/
+bool findUser(string user, int numPlayers_, Player playersArr[]){
+    //Find if user exists
+    for(int i=0; i < numPlayers_; i++){
+        if(playersArr[i].getName() == user){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+void Game::addCharacter(string playerName){
     //adds character to character array at various planets
+    if(numPlayers == 100){
+        cout << "The players array is already full. " << playerName << " was not added." << endl;
+    } else if (findUser(playerName, numPlayers, players)){
+        cout << playerName << " already exists in the clan." << endl;
+    } else {
+        //add to library
+        Player new_player;
+        
+        //Add username
+        new_player.setUsername(playerName);
+        
+        //Add user to array
+        players[numPlayers] = new_player;
+        numPlayers++;
+        
+        cout << "Welcome to the clan, " << playerName << endl;
+    }
 }
