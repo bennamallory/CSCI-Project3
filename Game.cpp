@@ -6,6 +6,7 @@
 #include <iostream> 
 #include "Object.h"
 #include "Player.h"
+#include "Game.h"
 using namespace std; 
 
 //Default constructor
@@ -41,14 +42,16 @@ int Game::writeObjects(string filename){
     //calculate the total value of all objects in the list
     //return the total value of all objects in the list
     
-    return /*totalValues*/;
+    //return totalValues
+    
+    return 0;
 }
 
 string Game::getPlanet(){
     return planetOn;
 }
 
-void Game::setPlanet(planetOn_){
+void Game::setPlanet(string planetOn_){
     planetOn = planetOn_;
 }
 
