@@ -19,7 +19,7 @@ class Game{
         int getNumPlayers(); //get the number of players
         int getNumObjects(); //get the number of objects
         int readObjects(string filename); //read a file of objects and their values, return number of objects
-        int writeObject(string filename); //write object(s) to a new file, return sum of all their values
+        int writeObjects(string filename); //write object(s) to a new file, return sum of all their values
         string getPlanet(); //get the current planet name
     
         //Setters
