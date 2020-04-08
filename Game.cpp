@@ -4,6 +4,7 @@
 // Project 3 - Object Class Source File
 
 #include <iostream> 
+#include <fstream>
 #include "Object.h"
 #include "Player.h"
 #include "Game.h"
@@ -17,14 +18,30 @@ Game::Game(){
 }
 
 
+/*
+* This function gets the number of players
+* Parameters: none
+* Return: int numPlayers
+*/
 int Game::getNumPlayers(){
     return numPlayers;
 }
 
+/*
+* This function gets the number of objects
+* Parameters: none
+* Return: int numObjects
+*/
 int Game::getNumObjects(){
     return numObjects;
 }
 
+
+/*
+* This function reads objects from a file
+* Parameters: string filename
+* Return: the number of objects in the file
+*/
 int Game::readObjects(string filename){
     //read a file of objects
     //store the objects in the objects array (REPLACE ALL VALUES IN THIS ARRAY FOR EACH NEW PLANET)
@@ -32,53 +49,149 @@ int Game::readObjects(string filename){
     return numObjects;
 }
 
-int Game::writeObjects(string filename){
+
+
+/*
+* This function writes objects to another file
+* Parameters: string filename
+* Return: int totalValues (the summation of all object values)
+*/
+int Game::writeObject(string filename){
     //look in objects array
-    //find the object that has the highest value score -- that is the object you are adding to the file
     if(numObjects == 0){
         cout << "There are no objects in the objects array." << endl;
         totalValues = 0;
+        
+    //find the object that has the highest value score -- that is the object you are adding to the file
     } else {
-        //int highest = getObjectValue();
+        //Create most valued object to store data in
+        Object valuedObject;
+        
+        //Find highest value
+        int highestValue = objects[0].getObjectValue();
+        int highestName = objects[0].getObjectName();
         for(int i=0; i < numObjects; i++){
-            
+            if(objects[i].getObjectValue() > highestValue){
+                highestValue = objects[i].getObjectValue();
+                highestName = objects[i].getObjectName();
+            }
         }
         
+        //Set object to be written to file
+        valuedObject.setObjectValue(highestValue);
+        valuedObject.setObjectName(highestName);
         
         //open "filename" to write to
+        ofstream outFile;
         //write the object to the end of the file
+        outFile.open(filename, ios::app);
+        
+        if(outFile.fail()){
+            return -1;
+        } else {
+            outFile << valuedObject.getObjectName() << endl;
+            outFile << valuedObject.getObjectValue() << endl;
+        }
+        
+        outFile.close();
         
         //read the same file
-        //calculate the total value of all objects in the list
-        //return the total value of all objects in the list
+        ifstream inFile;
+        inFile.open(filename);
+        string line = "";
         
+        if(inFile.fail()){
+            return -1;
+        } else {
+            while(getline(inFile,line) && numObjects < 50){
+                if(line != ""){
+                    //If a digit, add to total
+                    //calculate the total value of all objects in the list
+                    if(!isdigit(line[j])){
+                        int totalValues += stoi(line);
+                    } else {
+                       continue;
+                    }
+                }
+            }
+        }
     }
-    
-    
-    
-    
+
     return totalValues;
 }
 
+
+/*
+* This function gets the current planet
+* Parameters: none
+* Return: string planetOn
+*/
 string Game::getPlanet(){
     return planetOn;
 }
 
+
+/*
+* This function sets the current planet
+* Parameters: string planetOn_
+* Return: none
+*/
 void Game::setPlanet(string planetOn_){
     planetOn = planetOn_;
 }
 
-void Game::printObject(Object object_){
-    //find object in objects array
-    //print object name
-    //print object score
+/*
+* This function checks to see if an object exists in the array
+* Parameters: string objectName, int numObjects_, Object objectsArr[]
+* Return: true or false
+*/
+bool findObject(string objectName, int numObjects_, Object objectsArr[]){
+    //Find if user exists
+    for(int i=0; i < numObjects_; i++){
+        if(objectsArr[i].getObjectName() == objectName){
+            return true;
+        }
+    }
+    
+    return false;
 }
 
-void Game::printStats(Player player_){
+
+/*
+* This function prints the object and value requested
+* Parameters: string objectName_
+* Return: none
+*/
+void Game::printObject(string objectName_){
+    //find object in objects array
+    if(!findObject(objectName_,numObjects,objects){
+        cout << "That object is not part of the list " << endl;
+    } else {
+        for(int i=0; i < numObjects; i++){
+            if(objects[i].getName() == objectName_){
+                cout << "Object Name: " << objects[i].getName() << ", Value: " << objects[i].getObjectValue() << endl;
+            }
+        }
+    }
+}
+
+
+/*
+* This function prints the stat of the current player
+* Parameters: string playerName_
+* Return: none
+*/
+void Game::printStats(string playerName_){
     //find player in players array
     //print intelligence, strength, money, and characterScore
 }
 
+
+/*
+* This function sets the current player being used
+* Parameters: string playerName
+* Return: none
+*/
 void Game::setCharacter(string playerName){
     //set character you want to use to perform tasks from character array
     if(findUser(playerName, numPlayers, players)){
@@ -105,6 +218,12 @@ bool findUser(string user, int numPlayers_, Player playersArr[]){
     return false;
 }
 
+
+/*
+* This function adds a character to the Players array
+* Parameters: string playerName
+* Return: none
+*/
 void Game::addCharacter(string playerName){
     //adds character to character array at various planets
     if(numPlayers == 100){
@@ -112,11 +231,11 @@ void Game::addCharacter(string playerName){
     } else if (findUser(playerName, numPlayers, players)){
         cout << playerName << " already exists in the clan." << endl;
     } else {
-        //add to library
+        //add to clan
         Player new_player;
         
         //Add username
-        new_player.setUsername(playerName);
+        new_player.setName(playerName);
         
         //Add user to array
         players[numPlayers] = new_player;
