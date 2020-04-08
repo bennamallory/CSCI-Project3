@@ -5,6 +5,7 @@
 
 #include <iostream> 
 #include <fstream>
+#include <string>
 #include "Object.h"
 #include "Player.h"
 #include "Game.h"
@@ -46,6 +47,7 @@ int Game::readObjects(string filename){
     //read a file of objects
     //store the objects in the objects array (REPLACE ALL VALUES IN THIS ARRAY FOR EACH NEW PLANET)
     //return the number of objects in the array
+    
     return numObjects;
 }
 
@@ -57,6 +59,10 @@ int Game::readObjects(string filename){
 * Return: int totalValues (the summation of all object values)
 */
 int Game::writeObject(string filename){
+    //Var
+    int totalValues = 0;
+    
+    
     //look in objects array
     if(numObjects == 0){
         cout << "There are no objects in the objects array." << endl;
@@ -69,7 +75,7 @@ int Game::writeObject(string filename){
         
         //Find highest value
         int highestValue = objects[0].getObjectValue();
-        int highestName = objects[0].getObjectName();
+        string highestName = objects[0].getObjectName();
         for(int i=0; i < numObjects; i++){
             if(objects[i].getObjectValue() > highestValue){
                 highestValue = objects[i].getObjectValue();
@@ -107,14 +113,15 @@ int Game::writeObject(string filename){
                 if(line != ""){
                     //If a digit, add to total
                     //calculate the total value of all objects in the list
-                    if(!isdigit(line[j])){
-                        int totalValues += stoi(line);
+                    if(isdigit(line[0])){
+                        totalValues += stoi(line);
                     } else {
                        continue;
                     }
                 }
             }
         }
+        inFile.close();
     }
 
     return totalValues;
@@ -164,12 +171,12 @@ bool findObject(string objectName, int numObjects_, Object objectsArr[]){
 */
 void Game::printObject(string objectName_){
     //find object in objects array
-    if(!findObject(objectName_,numObjects,objects){
+    if(!findObject(objectName_,numObjects,objects)){
         cout << "That object is not part of the list " << endl;
     } else {
         for(int i=0; i < numObjects; i++){
-            if(objects[i].getName() == objectName_){
-                cout << "Object Name: " << objects[i].getName() << ", Value: " << objects[i].getObjectValue() << endl;
+            if(objects[i].getObjectName() == objectName_){
+                cout << "Object Name: " << objects[i].getObjectName() << ", Value: " << objects[i].getObjectValue() << endl;
             }
         }
     }
@@ -184,23 +191,8 @@ void Game::printObject(string objectName_){
 void Game::printStats(string playerName_){
     //find player in players array
     //print intelligence, strength, money, and characterScore
+    cout << "soemthing" << endl;
 }
-
-
-/*
-* This function sets the current player being used
-* Parameters: string playerName
-* Return: none
-*/
-void Game::setCharacter(string playerName){
-    //set character you want to use to perform tasks from character array
-    if(findUser(playerName, numPlayers, players)){
-        currentCharacter = playerName;
-    } else {
-        cout << "That player is not part of the clan " << endl;
-    }
-}
-
 
 /*
 * This function checks to see if a user exists in the array
@@ -216,6 +208,22 @@ bool findUser(string user, int numPlayers_, Player playersArr[]){
     }
     
     return false;
+}
+
+
+/*
+* This function sets the current player being used
+* Parameters: string playerName
+* Return: none
+*/
+void Game::setCharacter(string playerName){
+    //set character you want to use to perform tasks from character array
+    if(findUser(playerName, numPlayers, players)){
+        currentCharacter = playerName;
+        cout << playerName << " is now your player." << endl;
+    } else {
+        cout << playerName << " is not part of the clan " << endl;
+    }
 }
 
 
