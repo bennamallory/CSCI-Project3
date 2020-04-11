@@ -14,7 +14,6 @@ using namespace std;
 class Game{
     public:
         Game(); //Default constructor
-        
         //Getters
         int getNumPlayers(); //get the number of players
         int getNumObjects(); //get the number of objects
@@ -37,8 +36,7 @@ class Game{
         int numObjects;
         string planetOn;
         string currentCharacter;
-        
+        int split(string splitPhrase, char separator, string afterSplit[], int size); //split function to read files
 
 }; 
 
-#endif
