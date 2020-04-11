@@ -18,6 +18,39 @@ Game::Game(){
     planetOn = "";
 }
 
+/*
+* This function splits a line of text
+* Parameters: splitPhrase: sentence to be split, separator: comma, afterSplit[]: an empty array to store the split items, size: size of array
+* Return: int count- number of items after split
+*/
+int Game:: split(string splitPhrase, char separator, string afterSplit[], int size){
+    splitPhrase = splitPhrase + separator; 
+    int count=0;
+    for (int i=0;i<(int)splitPhrase.length();i++) //goes through the string
+    {
+        if (splitPhrase[i]==separator&& splitPhrase[i+1]==separator) //moves through the characters if delmiters occur simultaneously
+        {
+            i++;
+        }
+        if (splitPhrase[i]!=separator) //if delimiter doesnt appear, keeps taking the characters in between delimiters
+        {
+            afterSplit[count]=afterSplit[count]+splitPhrase[i]; 
+            if (splitPhrase[i+1]==separator)//counts the word if delimiter comes after
+            {
+                count++;
+            }
+            else if (i==(int)splitPhrase.length())//counts the last word with no dilimiter after
+            {
+                count++;
+            }
+        }
+    }
+    if (count>size)
+    {
+        count=-1;
+    }
+    return count;
+}
 
 /*
 * This function gets the number of players
@@ -44,14 +77,32 @@ int Game::getNumObjects(){
 * Return: the number of objects in the file
 */
 int Game::readObjects(string filename){
-    //read a file of objects
-    //store the objects in the objects array (REPLACE ALL VALUES IN THIS ARRAY FOR EACH NEW PLANET)
-    //return the number of objects in the array
-    
-    return numObjects;
+    numObjects=0;// (REPLACE ALL VALUES IN THIS ARRAY FOR EACH NEW PLANET)
+    ifstream fileHandle;
+    fileHandle.open(filename);
+    if (fileHandle.is_open()){ //if it opens
+        string list="";
+        while (getline(fileHandle,list)){ //read a file of objects   [file format: objectName, objectValue]
+            int size=2;
+            string tempArray[size];
+            char separator=',';
+            int number= split(list, separator, tempArray, size); //splits each line
+            
+            if (numObjects==100){
+                return numObjects;
+            }
+            
+            //store the objects in the objects array
+            objects[numObjects].setObjectName(tempArray[0]);    
+            objects[numObjects].setObjectValue(stoi(tempArray[1])); //giving logic error (stoi)
+            numObjects++;
+        }
+        return numObjects; //return the number of objects in the array
+    }
+    else{               //if file doesn't open then returns -1
+        return -1;
+    }
 }
-
-
 
 /*
 * This function writes objects to another file
@@ -189,9 +240,21 @@ void Game::printObject(string objectName_){
 * Return: none
 */
 void Game::printStats(string playerName_){
-    //find player in players array
-    //print intelligence, strength, money, and characterScore
-    cout << "soemthing" << endl;
+    if (numPlayers==0){
+        cout<<"There are no players yet woopsies!"<<endl;
+    }
+    else{
+        for (int i=0;i<50;i++){//find player in players array
+            if (players[i].getName()== playerName_){
+                
+                //print intelligence, strength, money, and characterScore
+                cout<<players[i].getName()<<"\nIntelligence: "<<players[i].getIntelligence()<<endl;
+                cout<<"Strength: "<<players[i].getStrength()<<endl;
+                cout<<"Money: "<<players[i].getMoney()<<endl;
+                cout<<"Score: "<<players[i].getCharacterScore()<<endl;
+            }
+        }
+    }
 }
 
 /*
