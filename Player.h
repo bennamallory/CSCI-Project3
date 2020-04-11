@@ -19,13 +19,18 @@ class Player{
         double characterScore;
     public:
         Player();
+        //Setters
         void setName(string name_); //set character name
-        string getName(); //get character name
         void setIntelligence(int intelligence_); //set intelligence score
-        int getIntelligence(); //get intelligence score
         void setMoney(double money_); //set money
-        double getMoney(); //get amount of money 
+        void setStrength(int strength_); //set strength
         void setCharacterScore(double characterScore_);
+        
+        //Getters
+        string getName(); //get character name
+        int getIntelligence(); //get intelligence score
+        double getMoney(); //get amount of money 
+        int getStrength(); //get strength
         double getCharacterScore();
 };
 #endif
