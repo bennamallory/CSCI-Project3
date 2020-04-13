@@ -14,16 +14,16 @@ int main(){
     int user_input;
     int secondary_input;
     int secondary_input2;
+    Game game;
     
     //ADD ARRAY OF TRIVIA, MATH, RIDDLES WITH ANSWERS -- Read from file?
     //ADD LIST OF TASKS TO HELP VILLAGERS 
-    //PRINT OBJECTS FOUND? OR NUMBER OF OBJECTS IN LIST?
     
     //HOW TO END GAME? WHAT TO DO FOR FINAL PLANET?
     
     //IF players lose #2,3,4 -- do they lose points/money?
     
-    //WHEN TO ADD THE FIRST PLAYER
+    //WHEN TO ADD THE FIRST PLAYER -- enter name before while loop?
     
     
     while(user_input != 6){
