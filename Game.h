@@ -21,6 +21,9 @@ class Game{
         int readObjects(string filename); //read a file of objects and their values, return number of objects
         int writeObject(string filename); //write object(s) to a new file, return sum of all their values
         string getPlanet(); //get the current planet name
+        //string getTriviaQuestion --- choose random value from array, print the question, return the answer
+        //string getMathQuestion -- ""
+        //string getRiddleQuestion -- ""
     
         //Setters
         void setPlanet(string planetOn_); //set the current planet player is on
@@ -28,6 +31,7 @@ class Game{
         void printStats(string playerName_); //print intelligence, strength, money, and characterScore
         void setCharacter(string playerName); //set current character you are using for activities
         void addCharacter(string playerName); //add a character to the clan
+
         
 
     private: 
@@ -38,6 +42,13 @@ class Game{
         string planetOn;
         string currentCharacter;
         int split(string splitPhrase, char separator, string afterSplit[], int size); //split function to read files
+        //trivia array
+        //trivia array answers
+        //math array
+        //math array answers
+        //riddle array 
+        //riddle array answers
+        // help villagers array choices
 
 }; 
 
