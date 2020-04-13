@@ -15,6 +15,12 @@ using namespace std;
 Game::Game(){
     numPlayers = 0;
     numObjects = 0;
+    numObtainedObj = 0;
+    triviaQ = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
+    triviaA = {"T","F","T","F", "T","F", "T", "T", "F", "F"};
+    mathQ = {"What is 5 + 5254 ?", "What is 2*10 ?", "What is 2 * 2 * 2 ?", "What is 10 squared?", "What is 50 / 2 ?", "What is 14-5*3", "What is 5*6/3-1 ?", "What is the square root of 9 multiplied by 2?", "What is the smallest factor of 12?", "What is 15 % 3 ?" };
+    mathA = {5259, 20, 8, 100, 25, -1, 9, 6, 2, 0};
+    
     planetOn = "Earth";
 }
 
@@ -70,6 +76,15 @@ int Game::getNumObjects(){
     return numObjects;
 }
 
+/*
+* This function gets the number of objects obtained across the planets
+* Parameters: none
+* Return: int numObtainedObjects
+*/
+int Game::getNumObtainedObjects(){
+    return numObtainedObj;
+}
+
 
 /*
 * This function reads objects from a file
@@ -107,17 +122,16 @@ int Game::readObjects(string filename){
 /*
 * This function writes objects to another file
 * Parameters: string filename
-* Return: int totalValues (the summation of all object values)
+* Return: int totalValue (the total sum of obtained objects)
 */
 int Game::writeObject(string filename){
     //Var
-    int totalValues = 0;
+    int totalValue = 0;
     
     
     //look in objects array
     if(numObjects == 0){
         cout << "There are no objects in the objects array." << endl;
-        totalValues = 0;
         
     //find the object that has the highest value score -- that is the object you are adding to the file
     } else {
@@ -165,7 +179,9 @@ int Game::writeObject(string filename){
                     //If a digit, add to total
                     //calculate the total value of all objects in the list
                     if(isdigit(line[0])){
-                        totalValues += stoi(line);
+                        numObtainedObj += 1;
+                        totalValue += stoi(line);
+                        
                     } else {
                        continue;
                     }
@@ -175,7 +191,7 @@ int Game::writeObject(string filename){
         inFile.close();
     }
 
-    return totalValues;
+    return totalValue;
 }
 
 
@@ -258,6 +274,26 @@ void Game::printStats(string playerName_){
     }
 }
 
+
+/*
+* This function returns the characterScore of the current player
+* Parameters: string playerName_
+* Return: none
+*/
+double Game::getCharStat(string playerName_){
+    if (numPlayers==0){
+        cout<<"There are no players yet woopsies!"<<endl;
+    }
+    else{
+        for (int i=0;i<50;i++){//find player in players array
+            if (players[i].getName()== playerName_){
+                return players[i].calculateCharacterScore();
+
+            }
+        }
+    }
+}
+
 /*
 * This function checks to see if a user exists in the array
 * Parameters: string user, int numPlayers_, Player playersArr[]
@@ -324,4 +360,52 @@ void Game::addCharacter(string playerName){
         
         cout << "Welcome to the clan, " << playerName << endl;
     }
+}
+
+
+/*
+* This function prints a trivia question and returns the answer
+* Parameters: none
+* Return: string triviaA[randNum]
+*/
+string Game::getTriviaQuestion(){
+    //calculate a random number between 0 and 9
+    Srand(time(0));
+    int randNum = rand() % 9; 
+    
+    cout << triviaA[randNum] << endl;
+    
+    return triviaQ[randNum];
+}
+
+
+/*
+* This function prints a math question and returns the answer
+* Parameters: none
+* Return: string mathA[randNum]
+*/
+int Game::getMathQuestion(){
+    //calculate a random number between 0 and 9
+    Srand(time(0));
+    int randNum = rand() % 9; 
+    
+    cout << mathA[randNum] << endl;
+    
+    return mathQ[randNum];
+}
+
+
+/*
+* This function prints a riddle question and returns the answer
+* Parameters: none
+* Return: string riddleA[randNum]
+*/
+string Game::getRiddleQuestion(){
+    //calculate a random number between 0 and 9
+    Srand(time(0));
+    int randNum = rand() % 9; 
+    
+    cout << riddleA[randNum] << endl;
+    
+    return riddleAQ[randNum];
 }
