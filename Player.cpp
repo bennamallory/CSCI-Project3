@@ -53,8 +53,9 @@ void Player:: setStrength(int strength_){
 int Player::getStrength(){
     return strength;
 }
-void Player:: setCharacterScore(double characterScore_){
-    characterScore = characterScore_;
+
+double Player::calculateCharacterScore(){
+    return characterScore = (strength*0.40) + (intelligence*0.40) + (money*0.20);
 }
 
 
