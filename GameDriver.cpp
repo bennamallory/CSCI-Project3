@@ -14,20 +14,36 @@ int main(){
     int user_input;
     int secondary_input;
     int secondary_input2;
+    string answerTrivia;
+    int answerMath;
+    int index;
+    string answerRiddle;
     string playerNameInput;
     
     Game game;
     
+    cout << endl;
     cout << "Welcome to Planet Expedition" << endl;
+    cout << endl;
     cout << "Earth is being destroyed! You have been sent out to find a series of mysterious objects that will save the planet." << endl;
-    cout << "Your path is as follows: Earth --> _____ ---> _____ ---> Final Planet"<< endl;
+    cout << endl;
+    cout << "You must collect the most valuable object at each planet to reach the final planet, Titan." << endl;
+    cout << endl;
+    cout << "In order to find these objects, you must increase strength, intelligence, and money along the way. " << endl;
+    cout << endl;
+    cout << "Your path is as follows: Earth --> Pax ---> Xena ---> Titan"<< endl;
+    cout << endl;
+    cout << "You begin on Earth." << endl;
+    cout << endl;
+    cout << endl;
     
     //Enter first player
-    cout << "Enter your first player name: " << endl;
-    cin >> getline(playerNameInput);
+    cout << "Enter your player name: " << endl;
+    cin >> playerNameInput;
     
     game.addCharacter(playerNameInput);
     game.setCharacter(playerNameInput);
+    game.setTests();
     
     while(user_input != 6){
         cout << "Select a numerical option:" << endl;
@@ -38,7 +54,7 @@ int main(){
         cout << "4. Gamble" << endl;
         cout << "5. Find Objects" << endl;
         cout << "6. Quit" << endl;
-        
+        cout << "----Player Stats----" << endl;
         //PRINT STATS (intelligence, strength, money, characterScore, planet on)
         game.printStats(game.getCurrentPlayer());
 
@@ -51,9 +67,24 @@ int main(){
         
         switch(user_input){
             case 1: 
-                    //If you can move to next planet, reset the objects array and set planetOn to next planet
-                    //If you cannot move to next planet, display current planet, check if character score is high enough (1- , 2- , 3- )
-                    //If planetOn == finalPlanet, then print some success thing and end game.. 
+                    //If you can move to next planet (object obtained)
+                    if(game.getPlanet() == "Earth" && game.getNumObtainedObjects() == 1){
+                        //you obtained the first object, set new planet
+                        game.setPlanet("Pax");
+                        cout << "You are moving to planet Pax" << endl;
+                    } else if (game.getPlanet() == "Pax" && game.getNumObtainedObjects() == 2){
+                        //you obtained the second object, set new planet
+                        game.setPlanet("Xena");
+                        cout << "You are moving to planet Xena" << endl;
+                    } else if (game.getPlanet() == "Xena" && game.getNumObtainedObjects() == 3){
+                        //you obtained the third object, set new planet
+                        game.setPlanet("Titan");
+                        cout << "CONGRATS! You made the move to the final planet, Titan. Your efforts greatly helped to save Earth!" << endl;
+                        user_input = 6;
+                    } else {
+                        cout << "You cannot move on to the next planet. You must find the object list first. Gain intelligence, strength, or money to find objects." << endl;
+                    }
+
                     break;
             
             case 2: 
@@ -67,14 +98,34 @@ int main(){
                     cin >> secondary_input;
                     
                     if(secondary_input == 1){
-                        //give trivia question
+                        cout << "Answer the following trivia question with 'T' for True or 'F' for false" << endl;
+                        index = game.getTriviaQuestion();
+                        cin >> answerTrivia;
+                        
                         //if player gets trivia question correct, reward with intelligence points
+                        if(game.getTriviaAnswer(index) == answerTrivia){
+                            cout << "Correct! Added intelligence." << endl;
+                            game.addIntelligence(3);
+                        }
+                        
                     } else if(secondary_input == 2) {
-                        //give math question
+                        cout << "Answer the following trivia question with an integer value" << endl;
+                        index = game.getMathQuestion();
+                        cin >> answerMath;
                         //if player gets math question correct, reward with intelligence points
+                        if(game.getMathAnswer(index) == answerMath){
+                            cout << "Correct! Added intelligence." << endl;
+                            game.addIntelligence(3);
+                        }
                     } else if (secondary_input == 3) {
-                        //give riddle
+                        cout << "Answer the following trivia question with a single word answer" << endl;
+                        index = game.getRiddleQuestion();
+                        cin >> answerRiddle;
                         //if player gets riddle question correct, reward with intelligence points
+                        if(game.getRiddleAnswer(index) == answerRiddle){
+                            cout << "Correct! Added intelligence." << endl;
+                            game.addIntelligence(3);
+                        }
                     } else {
                         cout << "Invalid option." << endl;
                     }
