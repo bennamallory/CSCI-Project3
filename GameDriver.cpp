@@ -14,17 +14,24 @@ int main(){
     int user_input;
     int secondary_input;
     int secondary_input2;
+    string playerNameInput;
     Game game;
     
     //ADD ARRAY OF TRIVIA, MATH, RIDDLES WITH ANSWERS -- Read from file?
     //ADD LIST OF TASKS TO HELP VILLAGERS 
     
-    //HOW TO END GAME? WHAT TO DO FOR FINAL PLANET?
+    //HOW TO END GAME? WHAT TO DO FOR FINAL PLANET? 
+    
+    //Display all planets at begining?
     
     //IF players lose #2,3,4 -- do they lose points/money?
     
     //WHEN TO ADD THE FIRST PLAYER -- enter name before while loop?
+    cout << "Enter your first player name: " << endl;
+    cin >> playerNameInput;
     
+    game.addCharacter(playerNameInput);
+    game.setCharacter(playerNameInput);
     
     while(user_input != 6){
         cout << "Select a numerical option:" << endl;
@@ -35,7 +42,9 @@ int main(){
         cout << "4. Gamble" << endl;
         cout << "5. Find Objects" << endl;
         cout << "6. Quit" << endl;
+        
         //PRINT STATS (intelligence, strength, money, characterScore, planet on)
+        game.printStats(game.getCurrentPlayer());
 
         cin >> user_input;
         if(user_input < 1 || user_input > 8){
