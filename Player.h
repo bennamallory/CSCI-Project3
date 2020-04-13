@@ -24,13 +24,12 @@ class Player{
         void setIntelligence(int intelligence_); //set intelligence score
         void setMoney(double money_); //set money
         void setStrength(int strength_); //set strength
-        void setCharacterScore(double characterScore_);
         
         //Getters
         string getName(); //get character name
         int getIntelligence(); //get intelligence score
         double getMoney(); //get amount of money 
         int getStrength(); //get strength
-        double getCharacterScore();
+        double calculateCharacterScore(); //calculate character score
 };
 #endif
