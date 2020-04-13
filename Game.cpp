@@ -252,6 +252,7 @@ void Game::printStats(string playerName_){
                 cout<<"Strength: "<<players[i].getStrength()<<endl;
                 cout<<"Money: "<<players[i].getMoney()<<endl;
                 cout<<"Score: "<<players[i].getCharacterScore()<<endl;
+                cout<<"Planet On: "<< getPlanet() << endl;
             }
         }
     }
@@ -289,6 +290,15 @@ void Game::setCharacter(string playerName){
     }
 }
 
+
+/*
+* This function gets the current player
+* Parameters: string playerName
+* Return: none
+*/
+string Game::getCurrentPlayer(){
+    return currentCharacter;
+}
 
 /*
 * This function adds a character to the Players array
