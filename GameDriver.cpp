@@ -15,26 +15,16 @@ int main(){
     int secondary_input;
     int secondary_input2;
     string playerNameInput;
+    
     Game game;
     
-    //Planet start on? 
+    cout << "Welcome to Planet Expedition" << endl;
+    cout << "Earth is being destroyed! You have been sent out to find a series of mysterious objects that will save the planet." << endl;
+    cout << "Your path is as follows: Earth --> _____ ---> _____ ---> Final Planet"<< endl;
     
-    //ADD ARRAY OF TRIVIA, MATH, RIDDLES WITH ANSWERS -- Read from file? Part of game class? outside game class?
-    //ADD LIST OF TASKS TO HELP VILLAGERS -- same as above>
-    
-    //HOW TO END GAME? WHAT TO DO FOR FINAL PLANET? 
-    
-    //Display all planets at begining?
-    
-    //IF players lose #2,3,4 -- do they lose points/money?
-    
-    //WHEN TO ADD THE FIRST PLAYER -- enter name before while loop?
-    cout << "Welcome to _______" << endl;
-    cout << "The object to the game is... " << endl;
-    
-    
+    //Enter first player
     cout << "Enter your first player name: " << endl;
-    cin >> playerNameInput;
+    cin >> getline(playerNameInput);
     
     game.addCharacter(playerNameInput);
     game.setCharacter(playerNameInput);
@@ -62,7 +52,8 @@ int main(){
         switch(user_input){
             case 1: 
                     //If you can move to next planet, reset the objects array and set planetOn to next planet
-                    //If you cannot move to next planet, display current planet, display what player needs to move on to next planet (more strength, intelligence, money, etc)
+                    //If you cannot move to next planet, display current planet, check if character score is high enough (1- , 2- , 3- )
+                    //If planetOn == finalPlanet, then print some success thing and end game.. 
                     break;
             
             case 2: 
@@ -72,7 +63,6 @@ int main(){
                     cout << "1. Trivia" << endl;
                     cout << "2. Math" << endl;
                     cout << "3. Riddle" << endl;
-                    //CHOOSE CHARACTER
                     
                     cin >> secondary_input;
                     
@@ -96,7 +86,6 @@ int main(){
                     cout << "======Secondary Menu=====" << endl;
                     cout << "1. Brawl" << endl;
                     cout << "2. Help villagers" << endl;
-                    //CHOOSE CHARACTER
                     
                     cin >> secondary_input2;
                     
@@ -125,7 +114,7 @@ int main(){
                     break;
             case 5: 
                     //Check to see if characterScore is high enough for the planet (Planet 1 = ___, Planet 2 = ___, Planet 3 = ___)
-                        //If so, read list of Objects
+                        //If so, read list of Objects (if statements...)
                             //Based on characterScore, they can only choose a certain object
                             //Write certain object to object file
                         //If not, tell use what they need to add to their score to get the list
