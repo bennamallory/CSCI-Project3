@@ -60,5 +60,5 @@ double Player::calculateCharacterScore(){
 
 
 double Player::getCharacterScore(){
-    return characterScore;
+    return characterScore; 
 }
