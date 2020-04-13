@@ -15,7 +15,7 @@ using namespace std;
 Game::Game(){
     numPlayers = 0;
     numObjects = 0;
-    planetOn = "";
+    planetOn = "Earth";
 }
 
 /*
@@ -250,8 +250,8 @@ void Game::printStats(string playerName_){
                 //print intelligence, strength, money, and characterScore
                 cout<<players[i].getName()<<"\nIntelligence: "<<players[i].getIntelligence()<<endl;
                 cout<<"Strength: "<<players[i].getStrength()<<endl;
-                cout<<"Money: "<<players[i].getMoney()<<endl;
-                cout<<"Score: "<<players[i].getCharacterScore()<<endl;
+                cout<<"Money: "<< players[i].getMoney() <<endl;
+                cout<<"Score: "<< players[i].calculateCharacterScore() <<endl;
                 cout<<"Planet On: "<< getPlanet() << endl;
             }
         }
