@@ -21,16 +21,26 @@ class Game{
         int readObjects(string filename); //read a file of objects and their values, return number of objects
         int writeObject(string filename); //write object(s) to a new file, return sum of all their values
         string getPlanet(); //get the current planet name
-        //string getTriviaQuestion --- choose random value from array, print the question, return the answer
-        //string getMathQuestion -- ""
-        //string getRiddleQuestion -- ""
+        double getCharStat(string playerName_); //return the characterScore for a player
+        int getNumObtainedObjects(); //return the number of objects in your obtained objects list
+        string getTriviaAnswer(int index);
+        int getMathAnswer(int index);
+        string getRiddleAnswer(int index);
+        
+        int getTriviaQuestion(); //choose random value from array, print the question, return the index of the answer
+        int getMathQuestion();
+        int getRiddleQuestion();
+
     
         //Setters
         void setPlanet(string planetOn_); //set the current planet player is on
         void printObject(string objectName_); //print designated object and its score
         void printStats(string playerName_); //print intelligence, strength, money, and characterScore
         void setCharacter(string playerName); //set current character you are using for activities
+        void addIntelligence(int val); //add val to player intelligence
         void addCharacter(string playerName); //add a character to the clan
+        void setTests();
+
 
         
 
@@ -39,15 +49,16 @@ class Game{
         Object objects[100];
         int numPlayers;
         int numObjects;
+        int numObtainedObj;
         string planetOn;
         string currentCharacter;
         int split(string splitPhrase, char separator, string afterSplit[], int size); //split function to read files
-        //trivia array
-        //trivia array answers
-        //math array
-        //math array answers
-        //riddle array 
-        //riddle array answers
+        string triviaQ[10]; //trivia array
+        string triviaA[10];//trivia array answers
+        string mathQ[10]; //math array
+        int mathA[10]; //math array answers
+        string riddleQ[10]; //riddle array 
+        string riddleA[10]; //riddle array answers
         // help villagers array choices
 
 }; 
