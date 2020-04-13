@@ -31,5 +31,6 @@ class Player{
         double getMoney(); //get amount of money 
         int getStrength(); //get strength
         double calculateCharacterScore(); //calculate character score
+        double getCharacterScore(); //calculate character score
 };
 #endif
