@@ -17,8 +17,10 @@ int main(){
     string playerNameInput;
     Game game;
     
-    //ADD ARRAY OF TRIVIA, MATH, RIDDLES WITH ANSWERS -- Read from file?
-    //ADD LIST OF TASKS TO HELP VILLAGERS 
+    //Planet start on? 
+    
+    //ADD ARRAY OF TRIVIA, MATH, RIDDLES WITH ANSWERS -- Read from file? Part of game class? outside game class?
+    //ADD LIST OF TASKS TO HELP VILLAGERS -- same as above>
     
     //HOW TO END GAME? WHAT TO DO FOR FINAL PLANET? 
     
@@ -27,6 +29,10 @@ int main(){
     //IF players lose #2,3,4 -- do they lose points/money?
     
     //WHEN TO ADD THE FIRST PLAYER -- enter name before while loop?
+    cout << "Welcome to _______" << endl;
+    cout << "The object to the game is... " << endl;
+    
+    
     cout << "Enter your first player name: " << endl;
     cin >> playerNameInput;
     
