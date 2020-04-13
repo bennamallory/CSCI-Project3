@@ -16,12 +16,16 @@ Game::Game(){
     numPlayers = 0;
     numObjects = 0;
     numObtainedObj = 0;
-    triviaQ = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
-    triviaA = {"T","F","T","F", "T","F", "T", "T", "F", "F"};
-    mathQ = {"What is 5 + 5254 ?", "What is 2*10 ?", "What is 2 * 2 * 2 ?", "What is 10 squared?", "What is 50 / 2 ?", "What is 14-5*3", "What is 5*6/3-1 ?", "What is the square root of 9 multiplied by 2?", "What is the smallest factor of 12?", "What is 15 % 3 ?" };
-    mathA = {5259, 20, 8, 100, 25, -1, 9, 6, 2, 0};
-    
     planetOn = "Earth";
+}
+
+void Game::setTests(){
+    string triviaQ[10] = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
+    string triviaA[10] = {"T","F","T","F", "T","F", "T", "T", "F", "F"};
+    string mathQ[10] = {"What is 5 + 5254 ?", "What is 2*10 ?", "What is 2 * 2 * 2 ?", "What is 10 squared?", "What is 50 / 2 ?", "What is 14-5*3", "What is 5*6/3-1 ?", "What is the square root of 9 multiplied by 2?", "What is the smallest factor of 12?", "What is 15 % 3 ?" };
+    int mathA[10] = {5259, 20, 8, 100, 25, -1, 9, 6, 2, 0};
+    string riddleQ[10] = {"What 4-letter word can be written forward, backward or upside down, and can still be read from left to right?", "What kind of goose fights with snakes?" , "I am wet when drying. What am I?", "You answer me, although I never ask you questions.", "What word is always pronounced wrong?", "The leaves are on the fruit, The fruits is on the leaves.", "The one who has it does not keep it. It is large and small. It is any shape.", "What has an eye but can not see?","What color is the wind?", "If you drop a yellow hat in the Red Sea, what does it become?"};
+    string riddleA[10] = {"noon", "mongoose","towel","phone", "wrong", "pineapple","gift","needle","blew", "wet"};
 }
 
 /*
@@ -364,48 +368,99 @@ void Game::addCharacter(string playerName){
 
 
 /*
-* This function prints a trivia question and returns the answer
+* This function prints a trivia question
 * Parameters: none
-* Return: string triviaA[randNum]
+* Return: index of answer
 */
-string Game::getTriviaQuestion(){
+int Game::getTriviaQuestion(){
     //calculate a random number between 0 and 9
-    Srand(time(0));
     int randNum = rand() % 9; 
     
-    cout << triviaA[randNum] << endl;
+    cout << triviaQ[randNum] << endl;
+    cout << "RAND" << randNum << endl;
     
-    return triviaQ[randNum];
+    return randNum;
+}
+
+/*
+* This function returns the trivia answer
+* Parameters: none
+* Return: string triviaA[storedIdx]
+*/
+string Game::getTriviaAnswer(int idx){
+    return triviaA[idx];
 }
 
 
 /*
 * This function prints a math question and returns the answer
 * Parameters: none
-* Return: string mathA[randNum]
+* Return: index of answer
 */
 int Game::getMathQuestion(){
     //calculate a random number between 0 and 9
-    Srand(time(0));
     int randNum = rand() % 9; 
     
-    cout << mathA[randNum] << endl;
+    cout << mathQ[randNum] << endl;
     
-    return mathQ[randNum];
+    return randNum;
+}
+
+/*
+* This function returns the math answer
+* Parameters: none
+* Return: int mathA[storedIdx]
+*/
+int Game::getMathAnswer(int idx){
+    return mathA[idx];
 }
 
 
 /*
 * This function prints a riddle question and returns the answer
 * Parameters: none
-* Return: string riddleA[randNum]
+* Return: index of answer
 */
-string Game::getRiddleQuestion(){
+int Game::getRiddleQuestion(){
     //calculate a random number between 0 and 9
-    Srand(time(0));
     int randNum = rand() % 9; 
     
-    cout << riddleA[randNum] << endl;
+    cout << riddleQ[randNum] << endl;
     
-    return riddleAQ[randNum];
+    return randNum;
+}
+
+/*
+* This function returns the riddle answer
+* Parameters: none
+* Return: int mathA[storedIdx]
+*/
+string Game::getRiddleAnswer(int idx){
+    return riddleA[idx];
+}
+
+
+/*
+* This function adds to the current player's intelligence score
+* Parameters: none
+* Return: none
+*/
+void Game::addIntelligence(int val){
+    string player_name;
+    int curr_intelligence;
+    int new_intelligence;
+    
+    player_name = getCurrentPlayer();
+    
+    //Find player
+    for (int i=0;i < numPlayers;i++){
+        if (players[i].getName() == player_name) {
+            //Get current intelligence
+            curr_intelligence = players[i].getIntelligence();
+            new_intelligence = curr_intelligence + val;
+            //Set new intelligence
+            players[i].setIntelligence(new_intelligence);
+        }
+    }
+    
 }
