@@ -9,6 +9,11 @@
 #include "Game.h"
 using namespace std; 
 
+int randomNumbers(int min, int max){
+    // rand() % (max-min+1) + min
+    return (rand() % (max-min+1)) + min;
+}
+
 int main(){
     //Var
     int user_input;
@@ -19,6 +24,14 @@ int main(){
     int index;
     string answerRiddle;
     string playerNameInput;
+    
+    //Game questions
+    string triviaQ[10] = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
+    string triviaA[10] = {"T","F","T","F", "T","F", "T", "T", "F", "F"};
+    string mathQ[10] = {"What is 5 + 5254 ?", "What is 2*10 ?", "What is 2 * 2 * 2 ?", "What is 10 squared?", "What is 50 / 2 ?", "What is 14-5*3", "What is 5*6/3-1 ?", "What is the square root of 9 multiplied by 2?", "What is the smallest factor of 12?", "What is 15 % 3 ?" };
+    int mathA[10] = {5259, 20, 8, 100, 25, -1, 9, 6, 2, 0};
+    string riddleQ[10] = {"What 4-letter word can be written forward, backward or upside down, and can still be read from left to right?", "What kind of goose fights with snakes?" , "I am wet when drying. What am I?", "You answer me, although I never ask you questions.", "What word is always pronounced wrong?", "The leaves are on the fruit, The fruits is on the leaves.", "The one who has it does not keep it. It is large and small. It is any shape.", "What has an eye but can not see?","What color is the wind?", "If you drop a yellow hat in the Red Sea, what does it become?"};
+    string riddleA[10] = {"noon", "mongoose","towel","phone", "wrong", "pineapple","gift","needle","blew", "wet"};
     
     Game game;
     
@@ -43,7 +56,7 @@ int main(){
     
     game.addCharacter(playerNameInput);
     game.setCharacter(playerNameInput);
-    game.setTests();
+    //game.setTests();
     
     while(user_input != 6){
         cout << "Select a numerical option:" << endl;
@@ -99,35 +112,54 @@ int main(){
                     
                     if(secondary_input == 1){
                         cout << "Answer the following trivia question with 'T' for True or 'F' for false" << endl;
-                        index = game.getTriviaQuestion();
+                        srand(time(0));
+                        index = randomNumbers(0,9);
+                        cout << triviaQ[index] << endl;
                         cin >> answerTrivia;
                         
                         //if player gets trivia question correct, reward with intelligence points
-                        if(game.getTriviaAnswer(index) == answerTrivia){
+                        if(triviaA[index] == answerTrivia){
                             cout << "Correct! Added intelligence." << endl;
                             game.addIntelligence(3);
+                            cout << endl;
+                        } else {
+                            cout << "INCORRECT. No points awarded." << endl;
+                            cout << endl;
                         }
                         
                     } else if(secondary_input == 2) {
                         cout << "Answer the following trivia question with an integer value" << endl;
-                        index = game.getMathQuestion();
+                        srand(time(0));
+                        index = randomNumbers(0,9);
+                        cout << mathQ[index] << endl;
                         cin >> answerMath;
                         //if player gets math question correct, reward with intelligence points
-                        if(game.getMathAnswer(index) == answerMath){
+                        if(mathA[index] == answerMath){
                             cout << "Correct! Added intelligence." << endl;
                             game.addIntelligence(3);
+                            cout << endl;
+                        } else {
+                            cout << "INCORRECT. No points awarded." << endl;
+                            cout << endl;
                         }
                     } else if (secondary_input == 3) {
                         cout << "Answer the following trivia question with a single word answer" << endl;
-                        index = game.getRiddleQuestion();
+                        srand(time(0));
+                        index = randomNumbers(0,9);
+                        cout << riddleQ[index] << endl;
                         cin >> answerRiddle;
                         //if player gets riddle question correct, reward with intelligence points
-                        if(game.getRiddleAnswer(index) == answerRiddle){
+                        if(riddleA[index] == answerRiddle){
                             cout << "Correct! Added intelligence." << endl;
                             game.addIntelligence(3);
+                            cout << endl;
+                        } else {
+                            cout << "INCORRECT. No points awarded." << endl;
+                            cout << endl;
                         }
                     } else {
                         cout << "Invalid option." << endl;
+                        cout << endl;
                     }
                     
                     break;
