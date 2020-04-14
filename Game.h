@@ -23,13 +23,6 @@ class Game{
         string getPlanet(); //get the current planet name
         double getCharStat(string playerName_); //return the characterScore for a player
         int getNumObtainedObjects(); //return the number of objects in your obtained objects list
-        string getTriviaAnswer(int index);
-        int getMathAnswer(int index);
-        string getRiddleAnswer(int index);
-        
-        int getTriviaQuestion(); //choose random value from array, print the question, return the index of the answer
-        int getMathQuestion();
-        int getRiddleQuestion();
 
     
         //Setters
@@ -53,13 +46,6 @@ class Game{
         string planetOn;
         string currentCharacter;
         int split(string splitPhrase, char separator, string afterSplit[], int size); //split function to read files
-        string triviaQ[10]; //trivia array
-        string triviaA[10];//trivia array answers
-        string mathQ[10]; //math array
-        int mathA[10]; //math array answers
-        string riddleQ[10]; //riddle array 
-        string riddleA[10]; //riddle array answers
-        // help villagers array choices
 
 }; 
 
