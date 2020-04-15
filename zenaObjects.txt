@@ -1,0 +1,3 @@
+Meteoroid, 10
+Asteroids, 3
+Comet, 5
