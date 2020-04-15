@@ -22,6 +22,7 @@ int main(){
     string answerTrivia;
     int answerMath;
     int index;
+    int totalObjVal;
     string answerRiddle;
     string playerNameInput;
     
@@ -197,10 +198,35 @@ int main(){
                     break;
             case 5: 
                     //Check to see if characterScore is high enough for the planet (Planet 1 = ___, Planet 2 = ___, Planet 3 = ___)
-                        //If so, read list of Objects (if statements...)
-                            //Based on characterScore, they can only choose a certain object
-                            //Write certain object to object file
-                        //If not, tell use what they need to add to their score to get the list
+                    if(game.getCharStat(game.getCurrentPlayer()) >= 10 && game.getPlanet() == "Earth"){
+                        cout << "Reading objects..." << endl;
+                        //read list of objects
+                        game.readObjects("earthObjects.txt");
+                        
+                        //add highest score object to file
+                        totalObjVal = game.writeObject("collectedObjects.txt");
+                        cout << "You now have a list value of: " << totalObjVal << endl;
+                        
+                    } else if (game.getCharStat(game.getCurrentPlayer()) >= 20 && game.getPlanet() == "Pax" ){
+                        //read list
+                        cout << "Reading objects..." << endl;
+                        game.readObjects("paxObjects.txt");
+                        
+                        //add highest score object to file
+                        totalObjVal = game.writeObject("collectedObjects.txt");
+                        cout << "You now have a list value of: " << totalObjVal << endl;
+                        
+                    } else if (game.getCharStat(game.getCurrentPlayer()) >= 30 && game.getPlanet() == "Zena") {
+                        //read list of objects
+                        cout << "Reading objects..." << endl;
+                        game.readObjects("zenaObjects.txt");
+                        
+                        //add highest score object to file
+                        totalObjVal = game.writeObject("collectedObjects.txt");
+                        cout << "You now have a list value of: " << totalObjVal << endl;
+                    } else {
+                        cout << "You do not have a high enough character score to find objects. Try increasing strength, intelligence, or money." << endl;
+                    }
                     
                     break;
             case 6: 
