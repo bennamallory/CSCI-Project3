@@ -1,0 +1,5 @@
+Rock, 2
+Paper, 5
+Scissiors, 3
+Radio, 7
+Kite, 1
