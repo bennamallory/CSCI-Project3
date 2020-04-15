@@ -147,6 +147,7 @@ int Game::writeObject(string filename){
         valuedObject.setObjectValue(highestValue);
         valuedObject.setObjectName(highestName);
         
+        
         //open "filename" to write to
         ofstream outFile;
         //write the object to the end of the file
@@ -160,6 +161,8 @@ int Game::writeObject(string filename){
         }
         
         outFile.close();
+        
+        cout << "You have added: " << valuedObject.getObjectName() << " with value " << valuedObject.getObjectValue() << endl;
         
         //read the same file
         ifstream inFile;
