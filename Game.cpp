@@ -15,6 +15,7 @@ using namespace std;
 Game::Game(){
     numPlayers = 0;
     numObjects = 0;
+    numFighters=0;
     numObtainedObj = 0;
     planetOn = "Earth";
 }
@@ -364,7 +365,7 @@ void Game::addCharacter(string playerName){
 
 /*
 * This function adds to the current player's intelligence score
-* Parameters: none
+* Parameters: int val-intelligence
 * Return: none
 */
 void Game::addIntelligence(int val){
@@ -385,4 +386,74 @@ void Game::addIntelligence(int val){
         }
     }
     
+}
+/*
+* This function adds to the current player's strength score
+* Parameters: int val- strength
+* Return: none
+*/
+void Game:: addStrength(int val){
+    string player_name;
+    int curr_strength;
+    int new_strength;
+    
+    player_name = getCurrentPlayer();
+    
+    //Find player
+    for (int i=0;i < numPlayers;i++){
+        if (players[i].getName() == player_name) {
+            //Get current strength
+            curr_strength = players[i].getStrength();
+            new_strength = curr_strength + val;
+            //Set new strength
+            players[i].setStrength(new_strength);
+        }
+    }
+}
+
+/*
+* This function calculates the probability of the player winning in a fight
+* Parameters: fighterIndex- the index in players array of fighter
+* Return: bool-true if the player wins, false if the player loses
+*/
+bool Game::fightTime(int fighterIndex){
+    double probabilityWin;
+    cout<<"Brave choice! It seems that " << fighters[fighterIndex].getName() << " wants to fight you!"<<endl;
+    probabilityWin= ((1-(fighters[fighterIndex].getStrength())/100.0)*players[0].getStrength()/(double)fighters[fighterIndex].getStrength());
+    if (probabilityWin>0.60){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+/*
+* This function takes and inputs fighters into a fighter array
+* Parameters: filename-contains fighters name, intelligence, strength and money
+* Return: int numFighters- the number of fighters in a list
+*/
+int Game:: readFighters(string filename){
+    ifstream fileHandle;
+    fileHandle.open(filename);
+    if (fileHandle.is_open()){ //if it opens
+        string list="";
+        while (getline(fileHandle,list)){ //read a file of objects   [file format: objectName, objectValue]
+            int size=4;
+            string tempArray[size];
+            char separator=',';
+            int number= split(list, separator, tempArray, size); //splits each line
+            
+            //store the objects in the objects array
+            fighters[numFighters].setName(tempArray[0]);    
+            fighters[numFighters].setIntelligence(stoi(tempArray[1])); //giving logic error (stoi)
+            fighters[numFighters].setStrength(stoi(tempArray[2])); //giving logic error (stoi)
+            fighters[numFighters].setMoney(stoi(tempArray[3])); //giving logic error (stoi)
+            numFighters++;
+        }
+        return numFighters;
+    }
+    else {
+        return -1;
+    }
 }
