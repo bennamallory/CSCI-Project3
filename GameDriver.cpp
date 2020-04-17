@@ -25,6 +25,7 @@ int main(){
     int totalObjVal;
     string answerRiddle;
     string playerNameInput;
+    int fighterChoice=1;
     
     //Game questions
     string triviaQ[10] = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
@@ -164,29 +165,39 @@ int main(){
                     }
                     
                     break;
-            case 3: 
+             case 3: 
                     //Second Menu
                     cout << "Select a numerical option:" << endl;
                     cout << "======Secondary Menu=====" << endl;
                     cout << "1. Brawl" << endl;
-                    cout << "2. Help villagers" << endl;
+                    cout << "2. Help villagers" << endl; //since this is easier, maybe allow this to occur only a certain number of times?
                     
                     cin >> secondary_input2;
                     
                     if(secondary_input2 == 1){
                         //find another player to fight
+        //i have no clue how to change the character we want
+                        game.readFighters("fighters.txt"); 
                         //Use probability (EX: 60% chance certain event will occur) to determine winner based off of strength
-                        //award strength points if win
+                        if (game.fightTime(fighterChoice)==true){
+                            cout<<"It looks like you're stronger than your opponent! You win this fight! And it looks like you've made a new friend that wants to join you!"<<endl;
+                            cout<<"They're now a part of your clan!"<<endl;
+                            game.addStrength(3); //award more strength points if win
+        //how to do this    game.addCharacter(fighters[fighterChoice].getName()); //adds fighter to your player array
+                        }
+                        else{
+                            cout<<"OOF it doesn't seem like you could win but since you tried, you've become a little bit stronger!";
+                            game.addStrength(1); //awards less strength from trying
+                        }
+                        fighterChoice++;
                     } else if(secondary_input2 == 2) {
                         //give player a task to complete that helps villagers (maybe just print a RANDOM task from a list of tasks possible (select a random value in range 1-6))
                         //award strength points for task
+                        cout<<"Option 2 isn't running yet!"<<endl;
                     } else {
                         cout << "Invalid option." << endl;
                     }
-                    
-                    
                     break;
-                    
             case 4: 
                     //Gamble 
                     //print how much money player currently has
