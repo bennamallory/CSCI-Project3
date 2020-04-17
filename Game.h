@@ -23,7 +23,8 @@ class Game{
         string getPlanet(); //get the current planet name
         double getCharStat(string playerName_); //return the characterScore for a player
         int getNumObtainedObjects(); //return the number of objects in your obtained objects list
-
+        int readFighters(string filename);
+        bool fightTime(int fighterIndex);
     
         //Setters
         void setPlanet(string planetOn_); //set the current planet player is on
@@ -31,20 +32,24 @@ class Game{
         void printStats(string playerName_); //print intelligence, strength, money, and characterScore
         void setCharacter(string playerName); //set current character you are using for activities
         void addIntelligence(int val); //add val to player intelligence
+        void addStrength(int val); //add val to player strength
         void addCharacter(string playerName); //add a character to the clan
         void setTests();
+        
 
 
         
 
     private: 
         Player players[50];
+        Player fighters[50];
         Object objects[100];
         int numPlayers;
         int numObjects;
         int numObtainedObj;
         string planetOn;
         string currentCharacter;
+        int numFighters;
         int split(string splitPhrase, char separator, string afterSplit[], int size); //split function to read files
 
 }; 
