@@ -1,3 +1,5 @@
-Meteoroid, 10
-Asteroids, 3
-Comet, 5
+Galaxy, 17
+Quintet, 2
+Lava, 1
+Quasar, 6
+Magnetar, 13
