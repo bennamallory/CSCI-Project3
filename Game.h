@@ -38,16 +38,14 @@ class Game{
         void addCharacter(string playerName); //add a character to the clan
         void setTests();
         void printMoney(string playerName_); //prints out money of main character
-    
-        
-
-
+        void endStats();
         
 
     private: 
         Player players[50];
         Player fighters[50];
         Object objects[100];
+        Object objectsCollected[100];
         int numPlayers;
         int numObjects;
         int numObtainedObj;
