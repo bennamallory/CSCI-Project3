@@ -1,4 +1,4 @@
-// CS1300 Spring 2020
+ // CS1300 Spring 2020
 // Author: Mallory Benna and Srvya Dhanwanda
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Class Source File
@@ -309,6 +309,22 @@ bool findUser(string user, int numPlayers_, Player playersArr[]){
     return false;
 }
 
+/*
+* This function checks to see if a fighter exists in the array
+* Parameters: string user, int numFighters_, Player fightersArr[]
+* Return: index of that fighter
+*/
+int findFighter(string user, int numFighters_, Player fightersArr[]){
+    //Find if user exists
+    for(int i=0; i < numFighters_; i++){
+        if(fightersArr[i].getName() == user){
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
 
 /*
 * This function sets the current player being used
@@ -350,14 +366,28 @@ void Game::addCharacter(string playerName){
         //add to clan
         Player new_player;
         
+        //Find fighter
+        int fightIndex = findFighter(playerName,numFighters,fighters);
+        
         //Add username
         new_player.setName(playerName);
+        
+        //serach fighters array for player, add respective point values
+        if(!(fightIndex == -1)){
+            new_player.setIntelligence(fighters[fightIndex].getIntelligence());
+            new_player.setStrength(fighters[fightIndex].getStrength());
+            new_player.setMoney(fighters[fightIndex].getMoney());
+            new_player.calculateCharacterScore();
+        }
         
         //Add user to array
         players[numPlayers] = new_player;
         numPlayers++;
         
         cout << "Welcome to the clan, " << playerName << endl;
+        
+        cout << players[numPlayers-1].getName() << ";" <<  players[numPlayers-1].getIntelligence() << ";" <<  players[numPlayers-1].getStrength() << ";" <<  players[numPlayers-1].getMoney() << endl;
+        
     }
 }
 
@@ -419,7 +449,7 @@ void Game:: addStrength(int val){
 bool Game::fightTime(int fighterIndex){
     double probabilityWin;
     cout<<"Brave choice! It seems that " << fighters[fighterIndex].getName() << " wants to fight you!"<<endl;
-    probabilityWin= ((1-(fighters[fighterIndex].getStrength())/100.0)*players[0].getStrength()/(double)fighters[fighterIndex].getStrength());
+    probabilityWin = ((1-(fighters[fighterIndex].getStrength())/100.0)*players[0].getStrength()/(double)fighters[fighterIndex].getStrength());
     if (probabilityWin>0.60){
         return true;
     }
