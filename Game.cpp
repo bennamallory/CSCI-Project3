@@ -386,7 +386,7 @@ void Game::addCharacter(string playerName){
         
         cout << "Welcome to the clan, " << playerName << endl;
         
-        cout << players[numPlayers-1].getName() << ";" <<  players[numPlayers-1].getIntelligence() << ";" <<  players[numPlayers-1].getStrength() << ";" <<  players[numPlayers-1].getMoney() << endl;
+        //cout << players[numPlayers-1].getName() << ";" <<  players[numPlayers-1].getIntelligence() << ";" <<  players[numPlayers-1].getStrength() << ";" <<  players[numPlayers-1].getMoney() << endl;
         
     }
 }
@@ -525,6 +525,7 @@ double Game::gambleTime(double moneyGambled, int randomPercent, string playerNam
         return 0; //returns 0 if there is no user
     }
 }
+
 /*
 This program prints the money of the player
 parameters: playerName_-the player whose money you want to know
@@ -544,6 +545,13 @@ void Game:: printMoney(string playerName_){
         }
     }
 }
+
+
+/*
+This program returns the name of a player in fighters array
+parameters: fighterIndex
+returns: fighter name
+*/
 string Game:: returnName(int fighterIndex){
     return fighters[fighterIndex].getName();
 }
