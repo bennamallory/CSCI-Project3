@@ -187,7 +187,7 @@ int main(){
                             cout<<"It looks like you're stronger than your opponent! You win this fight! And it looks like you've made a new friend that wants to join you!"<<endl;
                             cout<<"They're now a part of your clan!"<<endl;
                             game.addStrength(3); //award more strength points if win
-        //how to do this    game.addCharacter(fighters[fighterChoice].getName()); //adds fighter to your player array
+                            game.addCharacter(game.returnName(fighterChoice)); //adds fighter to your player array                        
                         }
                         else{
                             cout<<"OOF it doesn't seem like you could win but since you tried, you've become a little bit stronger!";
