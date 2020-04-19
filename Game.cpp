@@ -381,11 +381,6 @@ void Game::addCharacter(string playerName){
             new_player.setStrength(fighters[fightIndex].getStrength());
             new_player.setMoney(fighters[fightIndex].getMoney());
             new_player.calculateCharacterScore();
-        } else {
-            new_player.setIntelligence(30);
-            new_player.setStrength(30);
-            new_player.setMoney(30);
-            new_player.calculateCharacterScore();
         }
         
         //Add user to array
