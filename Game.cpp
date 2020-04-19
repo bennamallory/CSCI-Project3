@@ -457,3 +457,60 @@ int Game:: readFighters(string filename){
         return -1;
     }
 }
+/*
+This program returns the money after gambling
+parameters: moneyGambled-how much money the user gambles, randomPercent-a random percent to aplpy on money gambled, playerName-the player whose money you want to gamble.
+returns: finalMoney- the money that player has at the end.
+*/
+double Game::gambleTime(double moneyGambled, int randomPercent, string playerName_){
+    double finalMoney;
+    bool moneySafe=false;
+    if (findUser(playerName_, 50, players)) { //if user is found
+        if (!moneySafe){
+            for(int i=0;i<50;i++){
+                if (playerName_==players[i].getName()){  //if you find the player in player array
+                    if (moneyGambled<players[i].getMoney()){ //and if money gambled is less than what they have
+                        moneySafe=true; 
+                        finalMoney=moneyGambled*randomPercent/100 +players[i].getMoney();
+                        cout<<"You won: "<< moneyGambled*randomPercent/100 << " spacecoins!"<<endl; //then calculate the money won, DOES NOT CALCULATE LOSSES
+                        players[i].setMoney(finalMoney); //updates the new amount of money
+                        cout<<"Your final money is "<< finalMoney <<endl;
+                        return finalMoney;
+                    }
+                }
+            }
+            if (!moneySafe) {//if player didn't have enough money
+                cout<<"Sorry you don't have that much money!"<<endl;
+                for(int i=0;i<50;i++){
+                    if (playerName_==players[i].getName()){  //if you find the player in player array
+                        finalMoney= players[i].getMoney();
+                        return finalMoney;
+                    }
+                }
+            }
+        }
+    }
+    else{
+        cout<<"sorry that user doesn't exist!"<<endl;
+        return 0; //returns 0 if there is no user
+    }
+}
+/*
+This program prints the money of the player
+parameters: playerName_-the player whose money you want to know
+returns: nothing
+*/
+void Game:: printMoney(string playerName_){
+    if (numPlayers==0){
+        cout<<"There are no players yet woopsies!"<<endl;
+    }
+    else{
+        for (int i=0;i<50;i++){ //find player in players array
+            if (players[i].getName()== playerName_){
+                
+                //print money
+                cout<<players[i].getName()<<"\nMoney: "<< players[i].getMoney() <<endl;
+            }
+        }
+    }
+}
