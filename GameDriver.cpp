@@ -26,6 +26,8 @@ int main(){
     string answerRiddle;
     string playerNameInput;
     int fighterChoice=1;
+    double moneyGambled;
+    int randomPercent;
     
     //Game questions
     string triviaQ[10] = {"Elliptical galaxies are the most common type of galaxies in the universe (T/F)", "The hottest place in the universe is the Boomerang Nebula (T/F)", "The Universe is 13.8 billion years old (T/F)", "30 percent of the universe is dark matter (T/F)", "There are 8 planets in Earth's solar system (T/F)", "The largest planet in Earth's solar system is Mercury (T/F)", "A black hole has such a strong gravitational pull that even light cannot escape it (T/F)", "Proxima Centauri is the closest star to the sun (T/F)","The largest type of star in the universe is the protostar (T/F)","The white dwarf is the most common type of star in the universe (T/F)" };
@@ -34,6 +36,8 @@ int main(){
     int mathA[10] = {5259, 20, 8, 100, 25, -1, 9, 6, 2, 0};
     string riddleQ[10] = {"What 4-letter word can be written forward, backward or upside down, and can still be read from left to right?", "What kind of goose fights with snakes?" , "I am wet when drying. What am I?", "You answer me, although I never ask you questions.", "What word is always pronounced wrong?", "The leaves are on the fruit, The fruits is on the leaves.", "The one who has it does not keep it. It is large and small. It is any shape.", "What has an eye but can not see?","What color is the wind?", "If you drop a yellow hat in the Red Sea, what does it become?"};
     string riddleA[10] = {"noon", "mongoose","towel","phone", "wrong", "pineapple","gift","needle","blew", "wet"};
+    string task[10]={"find some metal to build the the spaceship","find a extraterrestrial plant to help heal the people", "help the young boy find his mother", "hello", "hello2", "hello3", "hello4", "hello5", "hello6", "hello7"};
+
     
     Game game;
     
@@ -165,7 +169,7 @@ int main(){
                     }
                     
                     break;
-             case 3: 
+            case 3: 
                     //Second Menu
                     cout << "Select a numerical option:" << endl;
                     cout << "======Secondary Menu=====" << endl;
@@ -191,21 +195,28 @@ int main(){
                         }
                         fighterChoice++;
                     } else if(secondary_input2 == 2) {
+                        cout<<"It looks like you have kind heart!"<<endl;
                         //give player a task to complete that helps villagers (maybe just print a RANDOM task from a list of tasks possible (select a random value in range 1-6))
+                        srand(time(0));
+                        index = randomNumbers(0,9);
+                        cout << task[index] << endl;
                         //award strength points for task
-                        cout<<"Option 2 isn't running yet!"<<endl;
+                        game.addStrength(2);
                     } else {
                         cout << "Invalid option." << endl;
                     }
                     break;
+                    
             case 4: 
                     //Gamble 
-                    //print how much money player currently has
+                    //print how much money MAIN player currently has
+                    game.printMoney(playerNameInput); 
                     cout << "How much money would you like to gamble? " << endl;
+                    cin>> moneyGambled;
                     //do some random calcualtion???
-                    //print how much money was won or lost
-                    //print new money calculation
-                    
+                    srand(time(0));
+                    randomPercent=randomNumbers(40,100);
+                    cout<<game.gambleTime(moneyGambled, randomPercent, playerNameInput)<<endl;
                     break;
             case 5: 
                     //Check to see if characterScore is high enough for the planet (Planet 1 = ___, Planet 2 = ___, Planet 3 = ___)
