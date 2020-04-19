@@ -25,7 +25,7 @@ class Game{
         int getNumObtainedObjects(); //return the number of objects in your obtained objects list
         int readFighters(string filename);
         bool fightTime(int fighterIndex);
-        double gambleTime(double moneyGambled, int randomPercent, string playerName_); //computes how much money lost/won in gambling
+        double gambleTime(double moneyGambled, int randomPercent, string playerName_); //computes how much money won in gambling
 
     
         //Setters
