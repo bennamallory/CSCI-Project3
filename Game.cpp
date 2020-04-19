@@ -148,6 +148,9 @@ int Game::writeObject(string filename){
         valuedObject.setObjectValue(highestValue);
         valuedObject.setObjectName(highestName);
         
+        //Add to objectsCollected Array
+        objectsCollected[numObtainedObj].setObjectName(valuedObject.getObjectName());
+        objectsCollected[numObtainedObj].setObjectValue(valuedObject.getObjectValue());
         
         //open "filename" to write to
         ofstream outFile;
@@ -378,6 +381,11 @@ void Game::addCharacter(string playerName){
             new_player.setStrength(fighters[fightIndex].getStrength());
             new_player.setMoney(fighters[fightIndex].getMoney());
             new_player.calculateCharacterScore();
+        } else {
+            new_player.setIntelligence(30);
+            new_player.setStrength(30);
+            new_player.setMoney(30);
+            new_player.calculateCharacterScore();
         }
         
         //Add user to array
@@ -554,4 +562,23 @@ returns: fighter name
 */
 string Game:: returnName(int fighterIndex){
     return fighters[fighterIndex].getName();
+}
+
+/*
+This program prints the end stats
+parameters: none
+returns: none
+*/
+void Game:: endStats(){
+    for(int i=0; i < numPlayers; i++){
+        cout << "Player: " << players[i].getName();
+        for(int j=0; j < numObtainedObj; j++){
+            if(i < numObtainedObj){
+                cout << ", reward obtained: " << objectsCollected[j].getObjectName() << endl;
+            } else {
+                cout << ", reward obtained: none" << endl;
+            }
+            
+        }
+    }
 }
