@@ -99,6 +99,7 @@ int main(){
                         //you obtained the third object, set new planet
                         game.setPlanet("Titan");
                         cout << "CONGRATS! You made the move to the final planet, Titan. Your efforts greatly helped to save Earth!" << endl;
+                        game.endStats();
                         user_input = 6;
                     } else {
                         cout << "You cannot move on to the next planet. You must find the object list first. Gain intelligence, strength, or money to find objects." << endl;
@@ -238,7 +239,7 @@ int main(){
                         totalObjVal = game.writeObject("collectedObjects.txt");
                         cout << "You now have a list value of: " << totalObjVal << endl;
                         
-                    } else if (game.getCharStat(game.getCurrentPlayer()) >= 30 && game.getPlanet() == "Zena") {
+                    } else if (game.getCharStat(game.getCurrentPlayer()) >= 30 && game.getPlanet() == "Xena") {
                         //read list of objects
                         cout << "Reading objects..." << endl;
                         game.readObjects("zenaObjects.txt");
