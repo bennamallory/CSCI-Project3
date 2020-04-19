@@ -1,3 +1,5 @@
 Meteoroid, 10
-Asteroids, 3
+Asteroid, 3
 Comet, 5
+Dust, 12
+Nutrino, 7
