@@ -26,7 +26,7 @@ class Game{
         int readFighters(string filename);
         bool fightTime(int fighterIndex);
         double gambleTime(double moneyGambled, int randomPercent, string playerName_); //computes how much money won in gambling
-
+        string returnName(int fighterIndex);
     
         //Setters
         void setPlanet(string planetOn_); //set the current planet player is on
@@ -38,6 +38,7 @@ class Game{
         void addCharacter(string playerName); //add a character to the clan
         void setTests();
         void printMoney(string playerName_); //prints out money of main character
+    
         
 
 
