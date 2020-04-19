@@ -544,3 +544,6 @@ void Game:: printMoney(string playerName_){
         }
     }
 }
+string Game:: returnName(int fighterIndex){
+    return fighters[fighterIndex].getName();
+}
