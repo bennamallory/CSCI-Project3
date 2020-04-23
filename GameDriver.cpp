@@ -255,7 +255,7 @@ int main(){
                                 cout << "Reading objects..." << endl;
                                 //read list of objects
                                 game.readObjects("earthObjects.txt");
-                            
+                                cout << "This object is required to restore communications on Earth.\nBlessed with the power of past generations, it will allow you to reconnect with rest of humankind."<<endl;
                                 //add highest score object to file
                                 totalObjVal = game.writeObject("collectedObjects.txt");
                                 cout << "You now have a list value of: " << totalObjVal << endl;
@@ -274,6 +274,7 @@ int main(){
                                 //add highest score object to file
                                 totalObjVal = game.writeObject("collectedObjects.txt");
                                 cout << "You now have a list value of: " << totalObjVal << endl;
+                                cout << "This object is a historic remnant of old Earth. If you dig deep miles into the soil, you will find Dust.\nCivilization had built and built till Dust was buried deep below and all the creatures that needed it died as well.\nUse this wisely and rebuild a better Earth." <<endl;
                                 chosen2 = true;
                             }
                             
@@ -289,6 +290,7 @@ int main(){
                                 //add highest score object to file
                                 totalObjVal = game.writeObject("collectedObjects.txt");
                                 cout << "You now have a list value of: " << totalObjVal << endl;
+                                cout << "This object is magic and truth. It speaks boldly and reminds you that Earth is small, and you are as well.\nKeep it happy and the Galaxy will favor you." <<endl;
                                 chosen3 = true;
                             }
                             
