@@ -131,70 +131,77 @@ int Game::writeObject(string filename){
         
     //find the object that has the highest value score -- that is the object you are adding to the file
     } else {
-        //Create most valued object to store data in
-        Object valuedObject;
-        
-        //Find highest value
-        int highestValue = objects[0].getObjectValue();
-        string highestName = objects[0].getObjectName();
-        for(int i=0; i < numObjects; i++){
-            if(objects[i].getObjectValue() > highestValue){
-                highestValue = objects[i].getObjectValue();
-                highestName = objects[i].getObjectName();
+        //check to see if the object has already been obtained (keeps from writing same objects over again)
+        if(planetOn == "Earth" && numObtainedObj == 1 || planetOn == "Pax" && numObtainedObj == 2 || planetOn == "Xena" && numObtainedObj == 3){
+            cout << "You have already collected the items on this planet. Try advancing to the next. Make sure your character score is high enough!" << endl;
+        } else {
+            //Create most valued object to store data in
+            Object valuedObject;
+            
+            //Find highest value
+            int highestValue = objects[0].getObjectValue();
+            string highestName = objects[0].getObjectName();
+            for(int i=0; i < numObjects; i++){
+                if(objects[i].getObjectValue() > highestValue){
+                    highestValue = objects[i].getObjectValue();
+                    highestName = objects[i].getObjectName();
+                }
             }
-        }
-        
-        //Set object to be written to file
-        valuedObject.setObjectValue(highestValue);
-        valuedObject.setObjectName(highestName);
-        
-        //Add to objectsCollected Array
-        objectsCollected[numObtainedObj].setObjectName(valuedObject.getObjectName());
-        objectsCollected[numObtainedObj].setObjectValue(valuedObject.getObjectValue());
-        
-        //open "filename" to write to
-        ofstream outFile;
-        //write the object to the end of the file
-        outFile.open(filename, ios::app);
-        
-        if(outFile.fail()){
-            return -1;
-        } else {
-            outFile << valuedObject.getObjectName() << endl;
-            outFile << valuedObject.getObjectValue() << endl;
-        }
-        
-        outFile.close();
-        
-        cout << "You have added: " << valuedObject.getObjectName() << " with value " << valuedObject.getObjectValue() << endl;
-        
-        //read the same file
-        ifstream inFile;
-        inFile.open(filename);
-        string line = "";
-        
-        if(inFile.fail()){
-            return -1;
-        } else {
-            while(getline(inFile,line) && numObjects < 50){
-                if(line != ""){
-                    //If a digit, add to total
-                    //calculate the total value of all objects in the list
-                    if(isdigit(line[0])){
-                        numObtainedObj += 1;
-                        totalValue += stoi(line);
-                        
-                    } else {
-                       continue;
+            
+            //Set object to be written to file
+            valuedObject.setObjectValue(highestValue);
+            valuedObject.setObjectName(highestName);
+            
+            //Add to objectsCollected Array
+            objectsCollected[numObtainedObj].setObjectName(valuedObject.getObjectName());
+            objectsCollected[numObtainedObj].setObjectValue(valuedObject.getObjectValue());
+            
+            //open "filename" to write to
+            ofstream outFile;
+            //write the object to the end of the file
+            outFile.open(filename, ios::app);
+            
+            if(outFile.fail()){
+                return -1;
+            } else {
+                outFile << valuedObject.getObjectName() << endl;
+                outFile << valuedObject.getObjectValue() << endl;
+            }
+            
+            outFile.close();
+            
+            cout << "You have added: " << valuedObject.getObjectName() << " with value " << valuedObject.getObjectValue() << endl;
+            
+            //read the same file
+            ifstream inFile;
+            inFile.open(filename);
+            string line = "";
+            
+            if(inFile.fail()){
+                return -1;
+            } else {
+                while(getline(inFile,line) && numObjects < 50){
+                    if(line != ""){
+                        //If a digit, add to total
+                        //calculate the total value of all objects in the list
+                        if(isdigit(line[0])){
+                            numObtainedObj += 1;
+                            totalValue += stoi(line);
+                            
+                        } else {
+                           continue;
+                        }
                     }
                 }
             }
+            inFile.close();
         }
-        inFile.close();
+       
     }
 
     return totalValue;
 }
+
 
 
 /*
