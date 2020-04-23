@@ -1,5 +1,5 @@
 // CSC1300 Spring 2020
-// Author: Mallory Benna and Sravya Dhanwanda
+// Author: Mallory Benna and Sravya Dhanwada
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Player Header File
 
@@ -17,6 +17,8 @@ class Player{
         int strength;
         double money;
         double characterScore;
+        int friendship;
+        
     public:
         Player();
         //Setters
@@ -24,6 +26,7 @@ class Player{
         void setIntelligence(int intelligence_); //set intelligence score
         void setMoney(double money_); //set money
         void setStrength(int strength_); //set strength
+        void setFriendship(int friendScore); //set friendship score
         
         //Getters
         string getName(); //get character name
@@ -32,5 +35,6 @@ class Player{
         int getStrength(); //get strength
         double calculateCharacterScore(); //calculate character score
         double getCharacterScore(); //calculate character score
+        int getFriendship(); //get friendship score
 };
 #endif
