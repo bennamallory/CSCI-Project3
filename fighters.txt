@@ -1,4 +1,5 @@
-rosie, 2, 2,10
+Rosie, 2, 2,10
 Genie, 12, 12, 12
 Surrender, 23, 24, 23
 Red, 30,31, 32
+Metal, 40, 42, 40
