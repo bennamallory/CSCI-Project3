@@ -1,5 +1,5 @@
 // CSC1300 Spring 2020
-// Author: Mallory Benna and Sravya Dhanwanda
+// Author: Mallory Benna and Sravya Dhanwada
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Player Class Source File
 
@@ -10,9 +10,10 @@ using namespace std;
 
 Player::Player(){
     name="";
-    intelligence=0;
-    strength=0;
-    money=0;
+    intelligence=5;
+    strength=5;
+    money=5;
+    friendship=0;
     characterScore=0;
 }
 
@@ -55,10 +56,18 @@ int Player::getStrength(){
 }
 
 double Player::calculateCharacterScore(){
-    return characterScore = (strength*0.40) + (intelligence*0.40) + (money*0.20);
+    return characterScore = (strength*0.30) + (intelligence*0.40) + (money*0.20)+  (friendship*0.10);
 }
 
 
 double Player::getCharacterScore(){
     return characterScore; 
+}
+
+void Player::setFriendship(int friendScore){
+    friendship=friendScore;
+}
+
+int Player::getFriendship(){
+    return friendship;
 }
