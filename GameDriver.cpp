@@ -242,7 +242,7 @@ int main(){
                         cin>> moneyGambled;
                         //do some random calcualtion???
                         srand(time(0));
-                        randomPercent=randomNumbers(-40,100);
+                        randomPercent=randomNumbers(-40,160);
                         cout<<game.gambleTime(moneyGambled, randomPercent, playerNameInput)<<endl;
                         break;
                 case 5: 
