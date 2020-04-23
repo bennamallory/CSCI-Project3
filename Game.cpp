@@ -1,5 +1,5 @@
- // CS1300 Spring 2020
-// Author: Mallory Benna and Srvya Dhanwanda
+// CS1300 Spring 2020
+// Author: Mallory Benna and Sravya Dhanwada
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Class Source File
 
@@ -265,10 +265,11 @@ void Game::printStats(string playerName_){
         for (int i=0;i<50;i++){//find player in players array
             if (players[i].getName()== playerName_){
                 
-                //print intelligence, strength, money, and characterScore
+                //print intelligence, strength, money, friendships and characterScore
                 cout<<players[i].getName()<<"\nIntelligence: "<<players[i].getIntelligence()<<endl;
                 cout<<"Strength: "<<players[i].getStrength()<<endl;
                 cout<<"Money: "<< players[i].getMoney() <<endl;
+                cout<<"Friendships: " <<players[i].getFriendship()<<endl;
                 cout<<"Score: "<< players[i].calculateCharacterScore() <<endl;
                 cout<<"Planet On: "<< getPlanet() << endl;
             }
@@ -443,6 +444,52 @@ void Game:: addStrength(int val){
         }
     }
 }
+/*
+* This function adds to the current player's money
+* Parameters: int val- money
+* Return: none
+*/
+void Game:: addMoney(double val){
+    string player_name;
+    int curr_money;
+    int new_money;
+    
+    player_name = getCurrentPlayer();
+    
+    //Find player
+    for (int i=0;i < numPlayers;i++){
+        if (players[i].getName() == player_name) {
+            //Get current money
+            curr_money = players[i].getMoney();
+            new_money = curr_money + val;
+            //Set new money
+            players[i].setMoney(new_money);
+        }
+    }
+}
+/*
+* This function adds to the current player's friendship score
+* Parameters: int val- friendship
+* Return: none
+*/
+void Game:: addFriendship(int val){
+    string player_name;
+    int curr_friendship;
+    int new_friendship;
+    
+    player_name = getCurrentPlayer();
+    
+    //Find player
+    for (int i=0;i < numPlayers;i++){
+        if (players[i].getName() == player_name) {
+            //Get current money
+            curr_friendship = players[i].getFriendship();
+            new_friendship = curr_friendship + val;
+            //Set new money
+            players[i].setFriendship(new_friendship);
+        }
+    }
+}
 
 /*
 * This function calculates the probability of the player winning in a fight
@@ -487,7 +534,7 @@ int Game:: readFighters(string filename){
         return numFighters;
     }
     else {
-        return -1;
+        return 0;
     }
 }
 /*
@@ -502,10 +549,14 @@ double Game::gambleTime(double moneyGambled, int randomPercent, string playerNam
         if (!moneySafe){
             for(int i=0;i<50;i++){
                 if (playerName_==players[i].getName()){  //if you find the player in player array
-                    if (moneyGambled<players[i].getMoney()){ //and if money gambled is less than what they have
+                    if (moneyGambled<=players[i].getMoney()){ //and if money gambled is less than what they have
                         moneySafe=true; 
                         finalMoney=moneyGambled*randomPercent/100 +players[i].getMoney();
-                        cout<<"You won: "<< moneyGambled*randomPercent/100 << " spacecoins!"<<endl; //then calculate the money won, DOES NOT CALCULATE LOSSES
+                        if (finalMoney<players[i].getMoney()){
+                            cout<<"You lost: "<< -1*moneyGambled*randomPercent/100 << " spacecoins!"<<endl;
+                        }else{
+                            cout<<"You won: "<< moneyGambled*randomPercent/100 << " spacecoins!"<<endl; //then calculate the money won, 
+                        }
                         players[i].setMoney(finalMoney); //updates the new amount of money
                         cout<<"Your final money is "<< finalMoney <<endl;
                         return finalMoney;
