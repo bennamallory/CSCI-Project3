@@ -101,15 +101,15 @@ int main(){
             switch(user_input){
                 case 1: 
                         //If you can move to next planet (object obtained)
-                        if(game.getPlanet() == "Earth" && game.getNumObtainedObjects() == 1){
+                        if(game.getPlanet() == "Earth" && game.getNumObtainedObjects() >= 1){
                             //you obtained the first object, set new planet
                             game.setPlanet("Pax");
                             cout << "You are moving to planet Pax" << endl;
-                        } else if (game.getPlanet() == "Pax" && game.getNumObtainedObjects() == 2){
+                        } else if (game.getPlanet() == "Pax" && game.getNumObtainedObjects() >= 2){
                             //you obtained the second object, set new planet
                             game.setPlanet("Xena");
                             cout << "You are moving to planet Xena" << endl;
-                        } else if (game.getPlanet() == "Xena" && game.getNumObtainedObjects() == 3){
+                        } else if (game.getPlanet() == "Xena" && game.getNumObtainedObjects() >= 3){
                             //you obtained the third object, set new planet
                             game.setPlanet("Titan");
                             cout << "CONGRATS! You made the move to the final planet, Titan. Your efforts greatly helped to save Earth!" << endl;
