@@ -1,5 +1,5 @@
 // CSC1300 Spring 2020
-// Author: Mallory Benna and Sravya Dhanwanda
+// Author: Mallory Benna and Sravya Dhanwada
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Object Class
 
