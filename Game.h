@@ -1,5 +1,5 @@
 // CS1300 Spring 2020
-// Author: Mallory Benna and Srvya Dhanwanda
+// Author: Mallory Benna and Sravya Dhanwada
 // Recitation: 106 – Sravanth Yajamanam
 // Project 3 - Game Header File
 
@@ -35,6 +35,8 @@ class Game{
         void setCharacter(string playerName); //set current character you are using for activities
         void addIntelligence(int val); //add val to player intelligence
         void addStrength(int val); //add val to player strength
+        void addMoney(double val); //add val to player money
+        void addFriendship(int val); //add val to player friendship
         void addCharacter(string playerName); //add a character to the clan
         void setTests();
         void printMoney(string playerName_); //prints out money of main character
@@ -43,7 +45,7 @@ class Game{
 
     private: 
         Player players[50];
-        Player fighters[50];
+        Player fighters[15];
         Object objects[100];
         Object objectsCollected[100];
         int numPlayers;
