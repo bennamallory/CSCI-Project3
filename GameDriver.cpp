@@ -31,6 +31,9 @@ int main(){
     int randomSituationCounter=1;
     int randomSituationIndex;
     int situationResponse;
+    bool chosen1 = false;
+    bool chosen2 = false;
+    bool chosen3 = false;
     string randomSituation;
     
     //Game questions
@@ -243,33 +246,52 @@ int main(){
                         cout<<game.gambleTime(moneyGambled, randomPercent, playerNameInput)<<endl;
                         break;
                 case 5: 
+                        
                         //Check to see if characterScore is high enough for the planet (Planet 1 = ___, Planet 2 = ___, Planet 3 = ___)
                         if(game.getCharStat(game.getCurrentPlayer()) >= 10 && game.getPlanet() == "Earth"){
-                            cout << "Reading objects..." << endl;
-                            //read list of objects
-                            game.readObjects("earthObjects.txt");
+                            if(chosen1){
+                                cout << "You have already obtained the objects from this planet. Try moving to the next." << endl;
+                            } else {
+                                cout << "Reading objects..." << endl;
+                                //read list of objects
+                                game.readObjects("earthObjects.txt");
                             
-                            //add highest score object to file
-                            totalObjVal = game.writeObject("collectedObjects.txt");
-                            cout << "You now have a list value of: " << totalObjVal << endl;
+                                //add highest score object to file
+                                totalObjVal = game.writeObject("collectedObjects.txt");
+                                cout << "You now have a list value of: " << totalObjVal << endl;
+                                chosen1 = true;
+                            }
+                            
                             
                         } else if (game.getCharStat(game.getCurrentPlayer()) >= 15 && game.getPlanet() == "Pax" ){
-                            //read list
-                            cout << "Reading objects..." << endl;
-                            game.readObjects("paxObjects.txt");
+                            if(chosen2){
+                                 cout << "You have already obtained the objects from this planet. Try moving to the next." << endl;
+                            } else {
+                                //read list
+                                cout << "Reading objects..." << endl;
+                                game.readObjects("paxObjects.txt");
+                                
+                                //add highest score object to file
+                                totalObjVal = game.writeObject("collectedObjects.txt");
+                                cout << "You now have a list value of: " << totalObjVal << endl;
+                                chosen2 = true;
+                            }
                             
-                            //add highest score object to file
-                            totalObjVal = game.writeObject("collectedObjects.txt");
-                            cout << "You now have a list value of: " << totalObjVal << endl;
                             
                         } else if (game.getCharStat(game.getCurrentPlayer()) >= 20 && game.getPlanet() == "Xena") {
-                            //read list of objects
-                            cout << "Reading objects..." << endl;
-                            game.readObjects("zenaObjects.txt");
+                            if(chosen3){
+                                cout << "You have already obtained the objects from this planet. Try moving to the next." << endl;
+                            } else {
+                                 //read list of objects
+                                cout << "Reading objects..." << endl;
+                                game.readObjects("zenaObjects.txt");
+                                
+                                //add highest score object to file
+                                totalObjVal = game.writeObject("collectedObjects.txt");
+                                cout << "You now have a list value of: " << totalObjVal << endl;
+                                chosen3 = true;
+                            }
                             
-                            //add highest score object to file
-                            totalObjVal = game.writeObject("collectedObjects.txt");
-                            cout << "You now have a list value of: " << totalObjVal << endl;
                         } else {
                             cout << "You do not have a high enough character score to find objects. Try increasing strength, intelligence, or money." << endl;
                         }
